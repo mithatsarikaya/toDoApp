@@ -5,7 +5,7 @@
 
 header{
     height: 20vh;
-    background-color: aquamarine;
+    background-color:rgb(116, 103, 103);
     /* align-items: center; */
     text-align: center;
     padding-top: 4vh;
@@ -15,9 +15,55 @@ header{
 section{
     height: 80vh;
     background-color:antiquewhite;
+    text-align: center;
+}
+
+article{
+    padding-top: 10px;
+}
+
+
+
+input{
+    width: 40%;
+    height: 50px;
+    padding: 20px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 30px;
+    text-align: center;
+}
+
+.article--images{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+img{
+    width: 50px;
+    padding: 5px;
+    cursor: pointer;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+img:hover{
+    transform: scale(1.1);
+}
+
+img:active{
+    transform:scale(0.9);
+ }
+
+.article--image--check{
+    background-color: greenyellow;
+    
+}
+
+.article--image--trash{
+    background-color: rgb(255, 68, 68);
 }
 
 input:disabled{
-    background-color: green;
-    border-radius: 50%;
-}
+    
+} 
