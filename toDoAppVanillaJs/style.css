@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header{
+    height: 20vh;
+    background-color: aquamarine;
+    /* align-items: center; */
+    text-align: center;
+    padding-top: 4vh;
+    font-size: 30px;
+}
+
+section{
+    height: 80vh;
+    background-color:antiquewhite;
+}
+
+input:disabled{
+    background-color: green;
+    border-radius: 50%;
+}
