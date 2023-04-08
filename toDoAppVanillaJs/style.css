@@ -1,10 +1,11 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
 }
 
 header{
-    height: 20vh;
+    height: 25vh;
     background-color:rgb(116, 103, 103);
     /* align-items: center; */
     text-align: center;
@@ -12,8 +13,24 @@ header{
     font-size: 30px;
 }
 
+.header--button{
+    width: 100px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    border: black solid 2px;
+}
+
+.header--button:hover{
+    transform: scale(1.1);
+}
+
+.header--button:active{
+    transform: scale(0.9);
+}
+
 section{
-    height: 80vh;
     background-color:antiquewhite;
     text-align: center;
 }
@@ -31,6 +48,9 @@ input{
     font-family: 'Source Code Pro', monospace;
     font-size: 30px;
     text-align: center;
+
+    text-decoration: line-through;
+    
 }
 
 .article--images{
