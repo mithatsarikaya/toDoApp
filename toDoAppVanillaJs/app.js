@@ -114,6 +114,77 @@ const deleteToDo = () => {
 };
 deleteToDo();
 
+//EDIT IF TEXT CHANGEEEEE
+const editIfTextChange = () => {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) =>
+    input.addEventListener("input", (e) => {
+      let idToBeUpdated = e.target.dataset.id;
+      let data = getDataFromLocalStorage();
+      data = data.map((d) =>
+        d.id === idToBeUpdated ? { ...d, text: e.target.value } : d
+      );
+      setDataToLocalStorage(data);
+    })
+  );
+};
+
+editIfTextChange();
+
+//for done and undone images. done image has 'check' inside his classname value.
+const clickCheckOrUndone = (nodeEl) => {
+  //if user clicked checked (or done image, i should have name that check pfffff)
+  if (nodeEl.classList.value.includes("check")) {
+    nodeEl.classList.add("done");
+    nodeEl.nextElementSibling.classList.remove("done");
+    nodeEl.parentNode.previousElementSibling.classList.add("done");
+  } else {
+    nodeEl.classList.add("done");
+    nodeEl.previousElementSibling.classList.remove("done");
+    nodeEl.parentNode.previousElementSibling.classList.remove("done");
+  }
+};
+
+//EDIT IF DONE or UNDONE img clicked
+
+const careDoneOrUndone = () => {
+  const doneImages = document.querySelectorAll(".article--image--check");
+
+  doneImages.forEach((doneImage) =>
+    doneImage.addEventListener("click", (e) => {
+      // (e.target.parentNode.parentNode.dataset.id)
+      let articleNote = getImmediateParentNode(e.target, "article");
+      let idToBeUpdated = articleNote.dataset.id;
+      let data = getDataFromLocalStorage();
+      data = data.map((d) =>
+        d.id === idToBeUpdated ? { ...d, done: !d.done } : d
+      );
+      setDataToLocalStorage(data);
+
+      //find the immediate undo img
+      clickCheckOrUndone(e.target);
+    })
+  );
+
+  const undoneImages = document.querySelectorAll(".article--image--undo");
+
+  undoneImages.forEach((undoneImage) =>
+    undoneImage.addEventListener("click", (e) => {
+      // (e.target.parentNode.parentNode.dataset.id)
+      let articleNote = getImmediateParentNode(e.target, "article");
+      let idToBeUpdated = articleNote.dataset.id;
+      let data = getDataFromLocalStorage();
+      data = data.map((d) =>
+        d.id === idToBeUpdated ? { ...d, done: !d.done } : d
+      );
+      setDataToLocalStorage(data);
+
+      clickCheckOrUndone(e.target);
+      //find the immediate undo img
+    })
+  );
+};
+careDoneOrUndone();
 //add button
 const addButton = document.querySelector(".header--button");
 
@@ -131,17 +202,6 @@ addButton.addEventListener("click", () => {
     createElementsFromData();
   }
   deleteToDo();
+  editIfTextChange();
+  careDoneOrUndone();
 });
-
-//EDIT IF TEXT CHANGEEEEE
-const inputs = document.querySelectorAll("input");
-inputs.forEach((input) =>
-  input.addEventListener("input", (e) => {
-    let idToBeUpdated = e.target.dataset.id;
-    let data = getDataFromLocalStorage();
-    data = data.map((d) =>
-      d.id === idToBeUpdated ? { ...d, text: e.target.value } : d
-    );
-    setDataToLocalStorage(data);
-  })
-);

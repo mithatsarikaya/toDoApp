@@ -55,6 +55,7 @@ input{
     opacity: 0.5;
     cursor: default;
     outline: none;
+    pointer-events: none;
 }
 
 
