@@ -16,8 +16,8 @@ const generateBlankDataToDo = () => {
   let randomId = createRandomId();
   let data = {
     id: randomId,
-    text: "yapilacak bir",
-    done: true,
+    text: "",
+    done: false,
   };
 
   return data;
@@ -35,7 +35,6 @@ const setDataToLocalStorage = (data) =>
 const createElementsFromData = () => {
   //need this line to rerender section.innerHTML
   let data = getDataFromLocalStorage();
-  console.log(data?.length);
   if (data) {
     section.innerHTML = "";
     data.map(
@@ -57,7 +56,7 @@ const createElementsFromData = () => {
             srcset=""
           />
           <img
-            class="article--image--undo"
+            class="article--image--undo ${!d.done ? "done" : ""}"
             src="arrow-rotate-left-solid.svg"
             alt="check"
             srcset=""
@@ -77,6 +76,44 @@ const createElementsFromData = () => {
 
 createElementsFromData();
 
+//give two parameters.first node second the string nodeName like div like article
+const getImmediateParentNode = (el, whichNode) => {
+  while (el.nodeName !== whichNode.toUpperCase()) {
+    el = el.parentNode;
+  }
+  return el;
+};
+
+const deleteToDo = () => {
+  ///////////////////////////DELETE ToDO
+  const deleteIcons = document.querySelectorAll(".article--image--trash");
+
+  //find the immediate parent 'article' get the id delete from html and data
+
+  deleteIcons.forEach((deleteIcon) => {
+    deleteIcon.addEventListener("click", (e) => {
+      //   let elParentNode = e.target.parentNode;
+      //   //get immedite parent article which has id
+      //   while (elParentNode.nodeName !== "ARTICLE") {
+      //     elParentNode = elParentNode.parentNode;
+      //   }
+
+      let elParentNode = getImmediateParentNode(e.target, "article");
+
+      let idToBeDeleted = elParentNode.dataset.id;
+
+      let data = getDataFromLocalStorage();
+      data = data.filter((d) => d.id !== idToBeDeleted);
+      setDataToLocalStorage(data);
+      elParentNode.remove();
+      if (data.length === 0) {
+        localStorage.clear();
+      }
+    });
+  });
+};
+deleteToDo();
+
 //add button
 const addButton = document.querySelector(".header--button");
 
@@ -93,4 +130,18 @@ addButton.addEventListener("click", () => {
     setDataToLocalStorage(data);
     createElementsFromData();
   }
+  deleteToDo();
 });
+
+//EDIT IF TEXT CHANGEEEEE
+const inputs = document.querySelectorAll("input");
+inputs.forEach((input) =>
+  input.addEventListener("input", (e) => {
+    let idToBeUpdated = e.target.dataset.id;
+    let data = getDataFromLocalStorage();
+    data = data.map((d) =>
+      d.id === idToBeUpdated ? { ...d, text: e.target.value } : d
+    );
+    setDataToLocalStorage(data);
+  })
+);
