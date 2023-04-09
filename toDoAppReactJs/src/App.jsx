@@ -30,7 +30,8 @@ function App() {
   const addNewToDo=()=>{
     setToDoLists(prevToDoLists=> [...prevToDoLists, generateBlankDataToDo()])
   }
-  const[toDoLists, setToDoLists] = React.useState(JSON.parse(localStorage.getItem("data")) || [])
+  //lazt initialization added
+  const[toDoLists, setToDoLists] = React.useState(()=>JSON.parse(localStorage.getItem("data")) || [])
   //delete
   const getIdToDelete=(id)=>{
     setToDoLists(prevList=>prevList.filter(p=>p.id!==id))
