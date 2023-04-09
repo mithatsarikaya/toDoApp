@@ -7,26 +7,31 @@ export default function ToDo (props){
     return (
         <article >
         <input
-          className=""
+          className={props.done ? "done" : ""}
           type="text"
-          placeholder='What to do?'
+          value={props.text}
+          placeholder={props.text ? "" : 'What to do?'}
+          onChange={(e)=>props.getIdToUpdateText(e,props.id)}
         />
         <div className="article--images">
           <img
-            className="article--image--check"
+            className={`article--image--check ${props.done ? "done" : ""}`}
+            // className="article--image--check"
             src={check}
             alt="check"
+            onClick={()=>props.getIdToUpdateDoneOrUndone(props.id)}
           />
           <img
-            className="article--image--undo"
+            className={`article--image--undo ${!props.done ? "done" : ""}`}
             src={undo} 
             alt="undo"
+            onClick={()=>props.getIdToUpdateDoneOrUndone(props.id)}
           />
           <img
             className="article--image--trash"
             src={trash}
             alt="trash"
-            onClick={props.getIdToDelete(props.key)}
+            onClick={()=>props.getIdToDelete(props.id)}
           />
         </div>
       </article>
