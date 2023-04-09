@@ -1,9 +1,9 @@
-import check from "../../public/check-solid.svg"
-import undo from "../../public/arrow-rotate-left-solid.svg"
-import trash from "../../public/check-solid.svg"
+import check from "/check-solid.svg"
+import undo from "/arrow-rotate-left-solid.svg"
+import trash from "/trash-solid.svg"
 
 
-export default function ToDo (){
+export default function ToDo (props){
     return (
         <article >
         <input
@@ -16,19 +16,17 @@ export default function ToDo (){
             className="article--image--check"
             src={check}
             alt="check"
-            srcset=""
           />
           <img
             className="article--image--undo"
-            src={undo}
+            src={undo} 
             alt="undo"
-            srcset=""
           />
           <img
             className="article--image--trash"
             src={trash}
             alt="trash"
-            srcset=""
+            onClick={props.getIdToDelete(props.key)}
           />
         </div>
       </article>
