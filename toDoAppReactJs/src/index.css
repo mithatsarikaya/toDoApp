@@ -1,0 +1,100 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Code Pro', monospace;
+}
+
+header{
+  height: 25vh;
+  background-color:rgb(116, 103, 103);
+  /* align-items: center; */
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+}
+
+.header--button{
+  width: 100px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 20px;
+  border: black solid 2px;
+}
+
+.header--button:hover{
+  transform: scale(1.1);
+}
+
+.header--button:active{
+  transform: scale(0.9);
+}
+
+section{
+  background-color:antiquewhite;
+  text-align: center;
+}
+
+article{
+  padding-top: 10px;
+}
+
+
+
+input{
+  width: 40%;
+  height: 50px;
+  padding: 20px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 30px;
+  text-align: center;
+}
+
+.done{
+  text-decoration: line-through;
+  opacity: 0.5;
+  cursor: default;
+  outline: none;
+  pointer-events: none;
+}
+
+
+
+.article--images{
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+img{
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+}
+
+
+img:not(.done):hover{
+  transform: scale(1.1);
+}
+
+img:not(.done):active{
+  transform:scale(0.9);
+}
+
+.article--image--check{
+  background-color: greenyellow;
+  
+}
+
+.article--image--undo{
+  background-color: burlywood;
+  
+}
+
+.article--image--trash{
+  background-color: rgb(255, 68, 68);
+}
+
